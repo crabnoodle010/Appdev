@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ManagerFPT.Models
 {
-    public class Category
+    public class Course
     {
         [Key]
         public int Id { get; set; }
@@ -14,6 +14,7 @@ namespace ManagerFPT.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-
+        [Required]
+        public Category Category { get; set; }
     }
 }

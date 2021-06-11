@@ -1,4 +1,5 @@
 ﻿using ManagerFPT.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,16 @@ namespace ManagerFPT.Controllers
             if (category == null) return HttpNotFound();
             return View(category);
 
+        }
+        public ActionResult Delete (int id)
+        {
+            var category = _context.Categories.SingleOrDefault(t => t.Id == id);
+            if (category == null) return HttpNotFound();
+
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Create()
@@ -65,5 +76,6 @@ namespace ManagerFPT.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }
