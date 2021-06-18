@@ -48,7 +48,7 @@ namespace ManagerFPT.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var viewmodel = new CourseCategoryViewModel
+            var viewmodel = new CourseCategoryViewModel()
             {
                 Categories = _context.Categories.ToList()
             };
@@ -59,7 +59,7 @@ namespace ManagerFPT.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewmodel = new CourseCategoryViewModel
+                var viewmodel = new CourseCategoryViewModel()
                 {
                     Course = course,
                     Categories = _context.Categories.ToList()
@@ -82,19 +82,30 @@ namespace ManagerFPT.Controllers
         {
             var course = _context.Courses.SingleOrDefault(t => t.Id == id);
             if (course == null) return HttpNotFound();
-            return View(course);
+            var viewmodel = new CourseCategoryViewModel()
+            {
+                Course = course,
+                Categories = _context.Categories.ToList()
+            };
+            return View(viewmodel);
         }
         [HttpPost]
         public ActionResult Edit(Course course)
         {
             if (!ModelState.IsValid)
             {
-                return View(course);
+                var viewmodel = new CourseCategoryViewModel()
+                {
+                    Course = course,
+                    Categories = _context.Categories.ToList()
+                };
+                return View(viewmodel);
             }
             var courseInDb = _context.Courses.SingleOrDefault(t => t.Id == course.Id);
             if (courseInDb == null) return HttpNotFound();
 
             courseInDb.Name = course.Name;
+            courseInDb.CategoryId = course.CategoryId;
             courseInDb.Description = course.Description;
 
             _context.SaveChanges();
