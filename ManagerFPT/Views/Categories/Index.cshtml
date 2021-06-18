@@ -6,12 +6,19 @@
 <h2>Category Course</h2>
 
 <div class="form-group">
-    @Html.ActionLink("New Category Course", "Create","Categories", null, new { @class ="btn btn-primary"})
+    @Html.ActionLink("New Category Course", "Create", "Categories", null, new { @class = "btn btn-primary" })
 </div>
+@using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("searchString", null, new { placeholder = "Search by Description ...", required = "required" })
+        <button type="submit"><i class="">Search</i></button>
+    </div>
+}
 
 <table class="table table-bordered">
     <thead>
-                <tr>
+        <tr>
             <th scope="col">#</th>
             <th scope="col">Category</th>
             <th scope="col">Description</th>
@@ -20,33 +27,33 @@
     <tbody>
         @foreach (var category in Model)
         {
-        <tr>
-            <td>@category.Id</td>
-            <td>@category.Name</td>
-            <td>@category.Description</td>
-            <td>
-                @Html.ActionLink(
-                                 "Details",
-                                 "Details",
-                                 "Categories",
-                                 new { id = category.Id },
-                                 new { @class = "btn btn-primary" })
-                @Html.ActionLink(
-                                 "Edit",
-                                 "Edit",
-                                 "Categories",
-                                 new { id = category.Id },
-                                 new { @class = "btn btn-default" })
-                @Html.ActionLink(
-                                 "Delete",
-                                 "Delete",
-                                 "Categories",
-                                 new { id = category.Id },
-                                 new { @class = "btn btn-danger" })
+            <tr>
+                <td>@category.Id</td>
+                <td>@category.Name</td>
+                <td>@category.Description</td>
+                <td>
+                    @Html.ActionLink(
+                                     "Details",
+                                     "Details",
+                                     "Categories",
+                                     new { id = category.Id },
+                                     new { @class = "btn btn-primary" })
+                    @Html.ActionLink(
+                                     "Edit",
+                                     "Edit",
+                                     "Categories",
+                                     new { id = category.Id },
+                                     new { @class = "btn btn-default" })
+                    @Html.ActionLink(
+                                     "Delete",
+                                     "Delete",
+                                     "Categories",
+                                     new { id = category.Id },
+                                     new { @class = "btn btn-danger" })
 
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 

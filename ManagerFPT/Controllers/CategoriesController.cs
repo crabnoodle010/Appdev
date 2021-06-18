@@ -1,4 +1,5 @@
 ﻿using ManagerFPT.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,13 @@ namespace ManagerFPT.Controllers
             _context = new ApplicationDbContext();
         }
         // GET: Categories
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var categories = _context.Categories.ToList();
+            if (!searchString.IsNullOrWhiteSpace())
+            {
+                categories = categories.Where(t => t.Name.Contains(searchString)).ToList();
+            }
             return View(categories);
         }
         public ActionResult Details(int id)
@@ -46,6 +51,10 @@ namespace ManagerFPT.Controllers
         [HttpPost]
         public ActionResult Create(Category category)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
             var newCategory = new Category
             {
                 Name = category.Name,
@@ -66,6 +75,10 @@ namespace ManagerFPT.Controllers
         [HttpPost]
         public ActionResult Edit(Category category)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
             var categoryInDb = _context.Categories.SingleOrDefault(t => t.Id == category.Id);
             if (categoryInDb == null) return HttpNotFound();
 
@@ -76,6 +89,5 @@ namespace ManagerFPT.Controllers
 
             return RedirectToAction("Index");
         }
-
     }
 }
