@@ -24,6 +24,7 @@ namespace ManagerFPT.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<UserInfor> UserInfors { get; set; }
         public DbSet<Category> Categories { get; set; }  
         public DbSet<Course> Courses { get; set; }
 
