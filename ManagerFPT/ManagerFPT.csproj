@@ -200,12 +200,18 @@
     <Compile Include="Migrations\202106191139502_AddUserInforTable.Designer.cs">
       <DependentUpon>202106191139502_AddUserInforTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106191343139_AddDepartmentTable.cs" />
+    <Compile Include="Migrations\202106191343139_AddDepartmentTable.Designer.cs">
+      <DependentUpon>202106191343139_AddDepartmentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TraineeIf.cs" />
     <Compile Include="Models\UserInfor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -311,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106191139502_AddUserInforTable.resx">
       <DependentUpon>202106191139502_AddUserInforTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106191343139_AddDepartmentTable.resx">
+      <DependentUpon>202106191343139_AddDepartmentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
