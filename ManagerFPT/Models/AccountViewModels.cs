@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ManagerFPT.Models
@@ -79,7 +81,10 @@ namespace ManagerFPT.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        public string FullName { get; set; }
+        [Display(Name = "User Role")]
+        public int UserRoleId { get; set; }
+        public IEnumerable<IdentityRole> Roles { get; set; }
+        public UserInfor UserInfo { get; set; }
 
     }
 
